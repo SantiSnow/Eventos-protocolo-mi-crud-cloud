@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -46,6 +48,33 @@ public class TestSistema {
 		System.out.println(miConsejo.getNombre());
 		System.out.println(miConsejo.getFecha());
 		System.out.println(miConsejo.getDescripcion());
+		
+		Assert.assertEquals("La precedencia", miConsejo.getNombre());
+		
+		mySession.close();
+		sessionFactory.close();
+	}
+	
+	@Test
+	public void testParaVerTodosLosConsejos() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Consejo.class)
+			.buildSessionFactory();
+			
+		Session mySession = sessionFactory.openSession();
+		
+		List<Consejo> misConsejos = SelectConsejo.selectAllTips(mySession);
+		
+		System.out.println(" ");
+		System.out.println(" ");
+		System.out.println("Lista Completa de tips:");
+		
+		for(Consejo i: misConsejos) {
+			System.out.println(i.getNombre());
+			System.out.println(i.getDescripcion());
+			System.out.println(i.getFecha());
+			
+		}
 		
 		mySession.close();
 		sessionFactory.close();

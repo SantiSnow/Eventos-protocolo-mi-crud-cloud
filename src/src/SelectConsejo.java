@@ -1,5 +1,7 @@
 package src;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
@@ -12,7 +14,7 @@ public class SelectConsejo {
 		
 		mySession.beginTransaction();
 		Consejo miConsejo = mySession.get(Consejo.class, idConsejo);
-		
+		mySession.getTransaction().commit();
 		if(miConsejo == null) {
 			JOptionPane.showMessageDialog(null, "No se encontró un consejo con ese número ID");
 			return null;
@@ -20,6 +22,13 @@ public class SelectConsejo {
 		else {
 			return miConsejo;
 		}
+	}
+	
+	public static List<Consejo> selectAllTips(Session mySession){
+		mySession.beginTransaction();
+		List<Consejo> todosLosConsejos = mySession.createQuery("from Consejo", Consejo.class).getResultList();
+		mySession.getTransaction().commit();
+		return todosLosConsejos;
 	}
 
 }
