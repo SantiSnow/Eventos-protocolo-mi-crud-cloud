@@ -43,6 +43,14 @@ public class Consejo {
 		
 	}
 
+	public Consejo(String nombre, String descripcion, String contenido, String fecha, String imagen) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.contenido = contenido;
+		this.fecha = fecha;
+		this.imagen = imagen;
+	}
+	/*
 	public Consejo(String nombre, String descripcion, String contenido, String fecha, String created_at, String updated_at, String imagen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -51,7 +59,7 @@ public class Consejo {
 		this.created_at = created_at;
 		this.updated_at = updated_at;
 		this.imagen = imagen;
-	}
+	}*/
 
 	//getters, setters, y tostring
 	public Integer getId() {

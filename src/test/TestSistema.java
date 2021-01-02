@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
 import model.Consejo;
@@ -74,6 +75,7 @@ public class TestSistema {
 		
 		for(Consejo i: misConsejos) {
 			System.out.println(i.getNombre());
+			System.out.println(i.getId());
 			System.out.println(i.getDescripcion());
 			System.out.println(i.getFecha());
 			
@@ -83,7 +85,7 @@ public class TestSistema {
 		sessionFactory.close();
 	}
 
-	@Test
+	@Ignore
 	public void testParaInsertarConsejos() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 			.addAnnotatedClass(Consejo.class)
@@ -97,8 +99,6 @@ public class TestSistema {
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 
 				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 				"2021-01-02",
-				"NULL",
-				"NULL",
 				"consejos-imgs/la-precedencia.jpg"
 				);
 		
@@ -108,7 +108,7 @@ public class TestSistema {
 		sessionFactory.close();
 	}
 	
-	@Test
+	@Ignore
 	public void testParaActualizarConsejos() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 			.addAnnotatedClass(Consejo.class)
