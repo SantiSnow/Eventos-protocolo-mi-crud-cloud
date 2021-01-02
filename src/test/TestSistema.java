@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.mysql.cj.jdbc.result.UpdatableResultSet;
 
 import model.Consejo;
+import src.DeleteConsejo;
 import src.InsertConsejo;
 import src.SelectConsejo;
 import src.UpdateConsejo;
@@ -120,6 +121,22 @@ public class TestSistema {
 		Consejo nuevoConsejo = UpdateConsejo.actualizarConsejo(mySession, 7);
 		
 		Assert.assertEquals("Nuevo nombre", nuevoConsejo.getNombre());
+		
+		mySession.close();
+		sessionFactory.close();
+	}
+	
+	@Test
+	public void testParaBorrarConsejos() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Consejo.class)
+			.buildSessionFactory();
+						
+		Session mySession = sessionFactory.openSession();
+		
+		Consejo consejoEliminado = DeleteConsejo.borrarConsejo(mySession, 7);
+		
+		Assert.assertEquals(7, consejoEliminado.getId(), 0);
 		
 		mySession.close();
 		sessionFactory.close();
