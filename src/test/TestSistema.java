@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import model.Consejo;
+import src.InsertConsejo;
 import src.SelectConsejo;
 
 public class TestSistema {
@@ -80,4 +81,30 @@ public class TestSistema {
 		sessionFactory.close();
 	}
 
+	@Test
+	public void testParaInsertarConsejos() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Consejo.class)
+			.buildSessionFactory();
+				
+		Session mySession = sessionFactory.openSession();
+		
+		Consejo nuevoConsejo = InsertConsejo.createConsejo(
+				mySession, 
+				"Consejo practica", 
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+				"2021-01-02",
+				"NULL",
+				"NULL",
+				"consejos-imgs/la-precedencia.jpg"
+				);
+		
+		Assert.assertEquals("Consejo practica", nuevoConsejo.getNombre());
+		
+		mySession.close();
+		sessionFactory.close();
+	}
+	
+	
 }
