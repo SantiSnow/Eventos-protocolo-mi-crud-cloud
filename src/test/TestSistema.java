@@ -106,5 +106,17 @@ public class TestSistema {
 		sessionFactory.close();
 	}
 	
+	@Test
+	public void testParaActualizarConsejos() {
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Consejo.class)
+			.buildSessionFactory();
+					
+		Session mySession = sessionFactory.openSession();
+		
+		mySession.close();
+		sessionFactory.close();
+	}
+	
 	
 }
