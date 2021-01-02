@@ -8,9 +8,12 @@ import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import com.mysql.cj.jdbc.result.UpdatableResultSet;
+
 import model.Consejo;
 import src.InsertConsejo;
 import src.SelectConsejo;
+import src.UpdateConsejo;
 
 public class TestSistema {
 	
@@ -113,6 +116,10 @@ public class TestSistema {
 			.buildSessionFactory();
 					
 		Session mySession = sessionFactory.openSession();
+	
+		Consejo nuevoConsejo = UpdateConsejo.actualizarConsejo(mySession, 7);
+		
+		Assert.assertEquals("Nuevo nombre", nuevoConsejo.getNombre());
 		
 		mySession.close();
 		sessionFactory.close();
