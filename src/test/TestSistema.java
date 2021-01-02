@@ -8,8 +8,6 @@ import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import com.mysql.cj.jdbc.result.UpdatableResultSet;
-
 import model.Consejo;
 import src.DeleteConsejo;
 import src.InsertConsejo;
